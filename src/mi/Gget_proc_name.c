@@ -105,8 +105,13 @@ unw_get_proc_name (unw_cursor_t *cursor, char *buf, size_t buf_len,
 
   ip = tdep_get_ip (c);
 #if !defined(__ia64__)
-  if (c->dwarf.use_prev_instr)
+  if (c->dwarf.use_prev_instr) {
+#if defined(__arm__)
+    // erase CPU mode indicator for Thumb mode
+    ip &= ~0x1;
+#endif
     --ip;
+  }
 #endif
   error = get_proc_name (tdep_get_as (c), ip, buf, buf_len, offp,
                          tdep_get_as_arg (c));

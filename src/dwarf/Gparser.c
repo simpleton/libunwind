@@ -440,8 +440,13 @@ fetch_proc_info (struct dwarf_cursor *c, unw_word_t ip)
      continue, and it's important we get this right, as 'ip' could be
      right at the function entry and hence FDE edge, or at instruction
      that manipulates CFA (push/pop). */
-  if (c->use_prev_instr)
+  if (c->use_prev_instr) {
+#if defined(__arm__)
+    // erase CPU mode indicator for Thumb mode
+    ip &= ~0x1;
+#endif
     --ip;
+  }
 
   memset (&c->pi, 0, sizeof (c->pi));
 
