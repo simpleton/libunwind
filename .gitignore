@@ -79,3 +79,9 @@ tests/[GL]x64-test-dwarf-expressions
 tests/x64-unwind-badjmp-signal-frame
 tests/*.log
 tests/*.trs
+
+**/CMakeFiles
+**/CMakeCache.txt
+**/build
+**/cmake_install.cmake
+
