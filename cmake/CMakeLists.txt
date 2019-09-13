@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.6.0 FATAL_ERROR)
+project(libunwind)
 
 set(UNWIND_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../)
 if (NOT TARGET lzma)
@@ -21,6 +22,7 @@ file(GLOB UNWIND_SOURCES_COMMON
     ${UNWIND_ROOT}/src/mi/mempool.c
     ${UNWIND_ROOT}/src/mi/strerror.c
     ${UNWIND_ROOT}/src/mi/backtrace.c
+    ${UNWIND_ROOT}/src/ptrace/dl-iterate-phdr-android.c
     ${UNWIND_ROOT}/src/mi/dyn-cancel.c
     ${UNWIND_ROOT}/src/mi/dyn-info-list.c
     ${UNWIND_ROOT}/src/mi/dyn-register.c
@@ -223,6 +225,6 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${OUTPUT_DIR}")
 
 set(REL_OUTPUT_DIR "${CMAKE_BUILD_TYPE}/${ANDROID_ABI}")
 
-add_library(unwind STATIC ${UNWIND_SOURCES_COMMON} ${UNWIND_SOURCES_ARCH} ${UNWIND_SOURCES_ASM})
+add_library(libunwind STATIC ${UNWIND_SOURCES_COMMON} ${UNWIND_SOURCES_ARCH} ${UNWIND_SOURCES_ASM})
 
-target_link_libraries(unwind lzma)
+target_link_libraries(libunwind lzma)
