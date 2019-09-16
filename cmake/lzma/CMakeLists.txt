@@ -1,6 +1,11 @@
+cmake_minimum_required(VERSION 3.6.0 FATAL_ERROR)
+project(lzma)
+
 set(LZMA_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../../lzma)
+
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D_7ZIP_ST -Wno-empty-body")
 include_directories(${LZMA_ROOT})
+
 file(GLOB LZMA_SOURCES
         ${LZMA_ROOT}/C/7zAlloc.c
         ${LZMA_ROOT}/C/7zArcIn.c

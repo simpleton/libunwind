@@ -27,7 +27,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.  */
 
 #include "libunwind_i.h"
 #include "os-linux.h"
-#include "dl-iterate-phdr.h"
 
 #ifndef IS_ELF
 /* Copied from NDK header. */

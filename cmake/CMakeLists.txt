@@ -17,12 +17,12 @@ include_directories(${UNWIND_ROOT}/src ${UNWIND_ROOT}/include ${UNWIND_ROOT}/lzm
 
 #Common sources for all platforms
 file(GLOB UNWIND_SOURCES_COMMON
+    ${UNWIND_ROOT}/src/dl-iterate-phdr-android.c
     ${UNWIND_ROOT}/src/mi/init.c
     ${UNWIND_ROOT}/src/mi/flush_cache.c
     ${UNWIND_ROOT}/src/mi/mempool.c
     ${UNWIND_ROOT}/src/mi/strerror.c
     ${UNWIND_ROOT}/src/mi/backtrace.c
-    ${UNWIND_ROOT}/src/ptrace/dl-iterate-phdr-android.c
     ${UNWIND_ROOT}/src/mi/dyn-cancel.c
     ${UNWIND_ROOT}/src/mi/dyn-info-list.c
     ${UNWIND_ROOT}/src/mi/dyn-register.c
