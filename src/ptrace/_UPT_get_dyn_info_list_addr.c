@@ -75,7 +75,7 @@ static inline int
 get_list_addr (unw_addr_space_t as, unw_word_t *dil_addr, void *arg,
                int *countp)
 {
-# warning Implement get_list_addr(), please.
+# pragma Implement get_list_addr(), please.
   *countp = 0;
   return 0;
 }
