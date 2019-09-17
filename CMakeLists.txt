@@ -1,10 +1,25 @@
-cmake_minimum_required(VERSION 3.6.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.11.0 FATAL_ERROR)
 project(libunwind)
 
-set(UNWIND_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../)
-if (NOT TARGET lzma)
-    add_subdirectory(lzma)
+include(FetchContent)
+FetchContent_Declare(
+  lzma
+  GIT_REPOSITORY https://github.com/simpleton/lzma.git
+  GIT_TAG        android_master
+)
+FetchContent_GetProperties(lzma)
+if(NOT lzma_POPULATED)
+  FetchContent_Populate(lzma)
+  add_subdirectory(${lzma_SOURCE_DIR} ${lzma_BINARY_DIR})
 endif()
+
+if (NOT TARGET lzma)
+  message(FATAL_ERROR, "Need lzma!!")
+endif()
+
+set(UNWIND_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
+
+
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-format")
 add_definitions(-DHAVE_CONFIG_H -D_GNU_SOURCE)
